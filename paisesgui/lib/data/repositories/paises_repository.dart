@@ -6,6 +6,7 @@
 
 
 import 'package:paisesgui/data/services/paises_ejemplo.dart';
+import 'package:paisesgui/data/services/paises_ejemplo_nuevo.dart';
 import 'package:paisesgui/domain/entities/continente.dart';
 import 'package:paisesgui/domain/entities/pais.dart';
 
@@ -13,9 +14,11 @@ class PaisesRepository {
   // Con late indicamos que este valor 
   // se inicializar posteriormente (en el constructor)
   late PaisesEjemplo api;
+  late PaisesEjemploNuevo apiNueva;
 
   PaisesRepository() {
     api = PaisesEjemplo();
+    apiNueva = PaisesEjemploNuevo();
   }
 
   List<Continente> getContinentes() {
@@ -54,6 +57,45 @@ class PaisesRepository {
   // Implementar el método infoPais
   Pais infoPais() {
     return Pais.fromJSON(api.infoPais());
+  }
+
+  //Practica 4
+
+   List<Continente> getContinentesNuevo() {
+        // Devuelve una lista de provincias, obtenidas a partir de la propiedad
+    // provincies de RepositoryData.
+
+    List<Continente> continentes = [];
+    for (var conti in apiNueva.continentes) {
+      continentes.add(Continente(nombre: conti["nombre"], imagen: conti["imagen"]));
+    }
+
+    return continentes;
+  }
+
+  // Implementar el método getPaises a partir del continente
+  List<Pais> getPaisesNuevo(String nombreContinente){
+    List<Pais> paises = [];
+
+    // Recorremos la lista de provincies en RepositoryData para encontrar la que se busca
+    for (var conti in apiNueva.continentes) {
+      if (conti["nombre"] == nombreContinente) {
+        // Cuando encontramos el continente, reocrremos los paises
+        // y añadimos a la lista paises con los datos de cada pais
+
+        for (var paisJSON in conti["paises"]) {
+          paises.add(Pais.fromJSON(paisJSON));
+        }
+      }
+    }
+
+    return paises;
+  }    
+
+  // TO-DO:
+  // Implementar el método infoPais
+  Pais infoPaisNuevo() {
+    return Pais(nombre: 'Sin implementar');
   }
 
 }
