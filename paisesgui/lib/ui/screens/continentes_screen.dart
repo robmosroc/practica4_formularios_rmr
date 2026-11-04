@@ -23,7 +23,7 @@ class ContinentesScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: // Obtendremos la lista de widgets con los continentes con la
                 // función privada _creaListaContinentes.
-                _creaListaContinentes(_repository.getContinentes()),
+                _creaListaContinentes(_repository.getContinentesNuevo()),
           ),
         ),
       ),
