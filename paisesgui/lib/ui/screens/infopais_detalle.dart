@@ -15,7 +15,7 @@ class InfoPaisDetalle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Pais pais = _repository.infoPais();
+    Pais pais = _repository.infoPaisNuevo(nombrePais);
 
     // TO-DO
     // Añadir la información siguiente sobre el país:
