@@ -92,10 +92,15 @@ class PaisesRepository {
     return paises;
   }    
 
-  // TO-DO:
-  // Implementar el método infoPais
-  Pais infoPaisNuevo() {
-    return Pais(nombre: 'Sin implementar');
+  Pais infoPaisNuevo(String nombrePais) {
+  for (var conti in apiNueva.continentes) {
+      for (var paisJSON in conti['paises']) {
+        if (paisJSON['nombre'] == nombrePais) {
+          return Pais.fromJSON(paisJSON);
+        }
+    }
+  }
+  return Pais(nombre: "País no encontrado");
   }
 
 }

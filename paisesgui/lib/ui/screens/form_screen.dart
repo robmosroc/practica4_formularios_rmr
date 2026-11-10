@@ -72,7 +72,7 @@ class _FormScreenState extends State<FormScreen> {
           if (value?.isEmpty ?? true) {
             return 'No puede estar vacío';
           }
-           final regexCorreo = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+          final regexCorreo = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
           // Validación del correo con la expresión regular
           if (!regexCorreo.hasMatch(value ?? "")) {
@@ -117,8 +117,39 @@ class _FormScreenState extends State<FormScreen> {
     return ElevatedButton(
       onPressed: () {
         if (_formKey.currentState?.validate() ?? false) {
-          if (_emailController.text == correctEmail && _passwordController.text == correctPass){
-            Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false);
+          if (_emailController.text == correctEmail &&
+              _passwordController.text == correctPass) {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              '/continentes',
+              (Route<dynamic> route) => false,
+            );
+          } else {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text("Error"),
+                  content: const Text("El usuario o la contraseña son incorrectas."),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context, "Volver");
+                      },
+                      child: const Text("Volver"),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        _emailController.text = correctEmail;
+                        _passwordController.text = correctPass;
+                        Navigator.pop(context, "Volver");
+                      },
+                      child: const Text("Rellenar usuario"),
+                    ),
+                  ],
+                );
+              },
+            );
           }
         }
       },

@@ -3,7 +3,9 @@ import 'package:paisesgui/data/repositories/paises_repository.dart';
 import 'package:paisesgui/domain/entities/pais.dart';
 
 class PaisesScreen extends StatelessWidget {
-  PaisesScreen({super.key});
+  PaisesScreen({
+    super.key,
+  });
 
   // Referencia al repositorio, de donde obtendremos la lista de continentes
   final PaisesRepository _repository = PaisesRepository();
@@ -11,11 +13,19 @@ class PaisesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // Extraemos el argumento enviado
+    // Si por algún motivo llega nulo, le asignamos un valor por defecto Europa
+    final String nombreContinente = ModalRoute.of(context)?.settings.arguments as String? ?? 'Europa';
+    
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Paises de $nombreContinente"),
+      ),
       body: Center(
           // Proporciona a _creaLlistaPaises la lista de paises de Europa
           child:
-              _creaListaPaises(_repository.getPaises())), 
+              _creaListaPaises(_repository.getPaisesNuevo(nombreContinente))), 
     );
   }
 
@@ -57,7 +67,18 @@ class PaisCard extends StatelessWidget {
     // que muestre la imagen  (obtenida de Internet a partir de la url)
     // y el nombre del país.
 
-    return Card(
+     return Material(
+      child: InkWell(
+        onTap: () {
+          // Navegamos a la ruta '/paises'
+          // Enviamos a través de 'arguments' el nombre de este pais específico
+          Navigator.pushNamed(
+            context, 
+            '/infopais', 
+            arguments: nombre,
+          );
+        },
+        child: Card(
       //Sin el clip.antiAlias no se muestran los bordes redondeados
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
@@ -82,6 +103,8 @@ class PaisCard extends StatelessWidget {
          ,
         ],
       ),
-    );
+    )
+      ),
+    );    
   }
 }

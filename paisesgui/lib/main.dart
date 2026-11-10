@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:paisesgui/ui/screens/continentes_screen.dart';
 import 'package:paisesgui/ui/screens/form_screen.dart';
-import 'package:paisesgui/ui/screens/launcher_screen.dart';
 import 'package:paisesgui/themes/tema_paises.dart';
+import 'package:paisesgui/ui/screens/infopais_screen.dart';
+import 'package:paisesgui/ui/screens/paises_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -14,9 +16,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       theme: temaPaises,
-      home: const Scaffold(
-        body: FormScreen(),
-      ),
+       initialRoute: '/',
+       routes: {
+        '/': (context) => const FormScreen(),
+        '/continentes': (context) => ContinentesScreen(),
+        '/paises': (context) => PaisesScreen(),
+        '/infopais': (context) => InfoPais(),
+      },
     );
   }
 }

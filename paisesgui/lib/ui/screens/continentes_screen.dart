@@ -72,13 +72,27 @@ class ContinenteRoundButton extends StatelessWidget {
     // Para darle estilo al texto, puedes utilizar: style: Theme.of(context).textTheme.displayMedium,
     // (en el Main, hemos definido ya un estilo personalizado para la aplicación, por tanto, de aquí hacemos referencia a ese tema)
 
-    return CircleAvatar(
-      radius: 110,
-      backgroundImage: NetworkImage(imagen),
-      child: Text(
-        nombre,
-        style: Theme.of(context).textTheme.displayMedium,
-      )
+    return Material(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(110),
+        onTap: () {
+          // Navegamos a la ruta '/paises'
+          // Enviamos a través de 'arguments' el nombre de este continente específico
+          Navigator.pushNamed(
+            context, 
+            '/paises', 
+            arguments: nombre,
+          );
+        },
+        child: CircleAvatar(
+          radius: 110,
+          backgroundImage: NetworkImage(imagen),
+          child: Text(
+            nombre,
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+        ),
+      ),
     );
   }
 }

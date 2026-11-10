@@ -6,11 +6,10 @@ import 'package:paisesgui/domain/entities/pais.dart';
 import 'package:paisesgui/ui/widgets/my_weather_info.dart';
 
 class InfoPaisDetalle extends StatelessWidget {
-  InfoPaisDetalle({
-    super.key,
-  });
+  final String nombrePais;
+  InfoPaisDetalle(this.nombrePais, {super.key});
 
-      // Referencia al repositorio, de donde obtendremos la lista de continentes
+  // Referencia al repositorio, de donde obtendremos la lista de continentes
   final PaisesRepository _repository = PaisesRepository();
 
 
@@ -23,6 +22,8 @@ class InfoPaisDetalle extends StatelessWidget {
     // Población (num. de habitantes), latitud y longitud.
     // Podéis combinar Column y Row para mostrar la información tabulada
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Información de $nombrePais"),),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
