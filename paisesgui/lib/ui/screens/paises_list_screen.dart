@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:paisesgui/data/repositories/paises_repository.dart';
 import 'package:paisesgui/domain/entities/pais.dart';
 
-class PaisesScreen extends StatelessWidget {
-  PaisesScreen({
-    super.key,
-  });
+class PaisesListScreen extends StatelessWidget {
+  final String nombreContinente;
+  PaisesListScreen(this.nombreContinente, {super.key});
 
   // Referencia al repositorio, de donde obtendremos la lista de continentes
   final PaisesRepository _repository = PaisesRepository();
@@ -16,7 +15,6 @@ class PaisesScreen extends StatelessWidget {
 
     // Extraemos el argumento enviado
     // Si por algún motivo llega nulo, le asignamos un valor por defecto Europa
-    final String nombreContinente = ModalRoute.of(context)?.settings.arguments as String? ?? 'Europa';
     
     return Scaffold(
       appBar: AppBar(
