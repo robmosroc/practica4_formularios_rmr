@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 import 'package:paisesgui/ui/screens/continentes_screen.dart';
 import 'package:paisesgui/ui/screens/infopais_detalle.dart';
 import 'package:paisesgui/ui/screens/infopais_general.dart';
@@ -75,3 +75,4 @@ class LauncherScreen extends StatelessWidget {
     );
   }
 }
+ */
