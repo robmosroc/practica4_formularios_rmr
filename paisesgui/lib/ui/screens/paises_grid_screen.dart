@@ -3,7 +3,8 @@ import 'package:paisesgui/data/repositories/paises_repository.dart';
 import 'package:paisesgui/domain/entities/pais.dart';
 
 class PaisesGridScreen extends StatelessWidget {
-  PaisesGridScreen();
+  final String nombreContinente;
+  PaisesGridScreen(this.nombreContinente, {super.key});
 
   // Referencia al repositorio, de donde obtendremos la lista de continentes
   final PaisesRepository _repository = PaisesRepository();
@@ -12,6 +13,9 @@ class PaisesGridScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Paises de $nombreContinente"),
+      ),
       body: Center(
           // Proporciona a _creaLlistaPaises la lista de paises de Europa
           child:
@@ -63,34 +67,44 @@ class PaisCard extends StatelessWidget {
     // que muestre la imagen  (obtenida de Internet a partir de la url)
     // y el nombre del país. 
 
-    return Card(
+     return Material(
+      child: InkWell(
+        onTap: () {
+          // Navegamos a la ruta '/paises'
+          // Enviamos a través de 'arguments' el nombre de este pais específico
+          Navigator.pushNamed(
+            context, 
+            '/infopais', 
+            arguments: nombre,
+          );
+        },
+        child: Card(
       //Sin el clip.antiAlias no se muestran los bordes redondeados
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15)
       ),
       child: Stack(
-        fit: StackFit.expand,
         children: [
           Image.network(
             imagen,
             //Usamos BoxFit.cover para que la imagen ocupe todo el widget
             fit: BoxFit.cover,
-            //double.infinity hace que ocupe todo el ancho/alto
             height: double.infinity,
+            //double.infinity hace que ocupe todo el ancho
             width: double.infinity,
             ),
             //Utilizamos el widget Positioned para elegir la posicion del texto con las propiedades bottom y left
             Positioned(
               bottom: 20,
-              left: 0,
-              right: 0,
-              child:   
-              Text(textAlign: TextAlign.center, nombre, style: Theme.of(context).textTheme.displaySmall,)
+              left: 20,
+              child:  Text(nombre, style: Theme.of(context).textTheme.displaySmall,)
             )
          ,
         ],
       ),
-    );
+    )
+      ),
+    );    
   }
 }

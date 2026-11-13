@@ -3,7 +3,7 @@ import 'package:paisesgui/ui/screens/continentes_screen.dart';
 import 'package:paisesgui/ui/screens/form_screen.dart';
 import 'package:paisesgui/themes/tema_paises.dart';
 import 'package:paisesgui/ui/screens/infopais_screen.dart';
-import 'package:paisesgui/ui/screens/paises_screen.dart';
+import 'package:paisesgui/ui/screens/pasies_screen.dart';
 
 void main() => runApp(const MyApp());
 

@@ -3,7 +3,7 @@ import 'package:paisesgui/ui/screens/continentes_screen.dart';
 import 'package:paisesgui/ui/screens/infopais_detalle.dart';
 import 'package:paisesgui/ui/screens/infopais_general.dart';
 import 'package:paisesgui/ui/screens/paises_grid_screen.dart';
-import 'package:paisesgui/ui/screens/paises_screen.dart';
+import 'package:paisesgui/ui/screens/paises_list_screen.dart';
 
 class LauncherScreen extends StatelessWidget {
   const LauncherScreen({
@@ -52,7 +52,7 @@ class LauncherScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) =>
-                        InfoPaisGeneral(),
+                        InfoPaisGeneral(""),
                   ),
                 );
               },
@@ -64,7 +64,7 @@ class LauncherScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) =>
-                        InfoPaisDetalle(),
+                        InfoPaisDetalle(""),
                   ),
                 );
               },
